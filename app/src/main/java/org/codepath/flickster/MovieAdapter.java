@@ -9,18 +9,33 @@ import android.view.ViewGroup;
 import android.widget.ImageView;
 import android.widget.TextView;
 
+import org.codepath.flickster.models.Config;
 import org.codepath.flickster.models.Movie;
 
 import java.util.ArrayList;
+
+import jp.wasabeef.glide.transformations.RoundedCornersTransformation;
 
 public class MovieAdapter extends RecyclerView.Adapter<MovieAdapter.ViewHolder> {
 
     //List of movies
     ArrayList<Movie> movies;
+    //config needed for image urls
+    Config config;
+    //context for rendering
+    Context context;
 
     //initalize the list
     public MovieAdapter(ArrayList<Movie> movies){
         this.movies=movies;
+    }
+
+    public Config getConfig() {
+        return config;
+    }
+
+    public void setConfig(Config config) {
+        this.config = config;
     }
 
     // creates and inflates a new view
@@ -28,7 +43,7 @@ public class MovieAdapter extends RecyclerView.Adapter<MovieAdapter.ViewHolder> 
     @Override
     public ViewHolder onCreateViewHolder( ViewGroup parent, int viewType) {
         // get the content and create the inflater
-        Context context= parent.getContext();
+        context= parent.getContext();
         LayoutInflater inflater=LayoutInflater.from(context);
         //create the view using the item_movie layout
         View movieView= inflater.inflate(R.layout.item_movie,parent,false);
@@ -45,10 +60,20 @@ public class MovieAdapter extends RecyclerView.Adapter<MovieAdapter.ViewHolder> 
         holder.tvTitle.setText(movie.getTitle());
         holder.tvOverview.setText(movie.getOverview());
 
-        //TODO - set image using Glide
+        //build url for poster image
+        String imageUrl = config.getImageUrl(config.getPosterSize(), movie.getPosterPath());
+
+        // load image using glide
+        GlideApp.with(context)
+                .load(imageUrl)
+                .transform(new RoundedCornersTransformation(25, 0))
+
+                .placeholder(R.drawable.flicks_backdrop_placeholder)
+                .error(R.drawable.flicks_backdrop_placeholder)
+                .into(holder.ivPosterImage);
 
     }
-//hi
+
     @Override
     public int getItemCount() {
         return movies.size();
