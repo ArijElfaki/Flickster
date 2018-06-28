@@ -48,7 +48,7 @@ public class MovieAdapter extends RecyclerView.Adapter<MovieAdapter.ViewHolder> 
         //TODO - set image using Glide
 
     }
-
+//hi
     @Override
     public int getItemCount() {
         return movies.size();
