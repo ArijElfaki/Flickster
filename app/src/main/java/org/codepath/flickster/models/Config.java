@@ -44,4 +44,5 @@ public class Config {
     public String getBackdropSize() {
         return backdropSize;
     }
+
 }
