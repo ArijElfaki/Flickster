@@ -11,6 +11,7 @@ import com.loopj.android.http.AsyncHttpClient;
 import com.loopj.android.http.JsonHttpResponseHandler;
 import com.loopj.android.http.RequestParams;
 
+import org.codepath.flickster.models.Config;
 import org.codepath.flickster.models.Movie;
 import org.json.JSONArray;
 import org.json.JSONException;
@@ -34,16 +35,15 @@ public class MovieListActivity extends AppCompatActivity {
 
     //instance feilds
     AsyncHttpClient client;
-    // the base url for loading images
-    String imageBaseUrl;
-    // poster size to use when fethcing images, part of the url
-    String posterSize;
+
     //list of currently playing movies
     ArrayList<Movie> movies;
     // the recycle view
     RecyclerView rvMovies;
     // the adapter wirwd to the recycler view
     MovieAdapter adapter;
+    // image Config
+    Config config;
 
 
     @Override
@@ -97,7 +97,7 @@ public class MovieListActivity extends AppCompatActivity {
 
             @Override
             public void onFailure(int statusCode, Header[] headers, String responseString, Throwable throwable) {
-                super.onFailure(statusCode, headers, responseString, throwable);
+                logError("Failed to parse now playing endpoint", throwable, true);
             }
         });
 
@@ -119,14 +119,13 @@ public class MovieListActivity extends AppCompatActivity {
             @Override
             public void onSuccess(int statusCode, Header[] headers, JSONObject response) {
                 try {
-                    JSONObject images= response.getJSONObject("images");
-                    //get the image base url
-                    imageBaseUrl=images.getString("secure_base_url");
-                    //get poster size
-                    JSONArray posterSizeOptions=images.getJSONArray("poster_sizes");
-                    //use option at 3 or default to w342
-                    posterSize=posterSizeOptions.optString(3, "w342");
-                    Log.i(TAG, String.format("Loaded configuration with imageBaseUrl %s and posterSize %s", imageBaseUrl,posterSize));
+                    config= new Config(response);
+                    Log.i(TAG, String.format("Loaded configuration with imageBaseUrl %s and posterSize %s",
+                            config.getImageBaseUrl(),
+                            config.getPosterSize()));
+                    //pass config to adapter
+                    adapter.setConfig(config);
+
                     //get the now playing movie list
                     getNowPlaying();
                 } catch (JSONException e) {

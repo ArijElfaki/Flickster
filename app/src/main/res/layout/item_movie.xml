@@ -27,11 +27,13 @@
         />
 
     <TextView
-        android:id="@+id/tvOverviw"
-        android:layout_width="wrap_content"
+        android:id="@+id/tvOverview"
+        android:layout_width="279dp"
         android:layout_height="wrap_content"
         android:layout_alignParentRight="true"
         android:layout_below="@+id/tvTitle"
+        android:layout_marginRight="0dp"
         android:layout_toEndOf="@+id/ivPosterImage"
+        android:scrollbars="vertical"
         android:text="Tv Overview and synopsis" />
 </RelativeLayout>
