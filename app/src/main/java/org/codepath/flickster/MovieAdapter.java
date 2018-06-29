@@ -25,6 +25,8 @@ public class MovieAdapter extends RecyclerView.Adapter<MovieAdapter.ViewHolder> 
     public static final String imageUrl1="url1";
     public static final String imageUrl2="url2";
 
+    public static final String videoUrl="none";
+
     //List of movies
     ArrayList<Movie> movies;
     //config needed for image urls

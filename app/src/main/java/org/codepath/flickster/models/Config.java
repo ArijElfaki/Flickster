@@ -12,6 +12,7 @@ public class Config {
     // backdrop size to use when fetching images
     String backdropSize;
 
+
     public Config(JSONObject object) throws JSONException {
         JSONObject images= object.getJSONObject("images");
         //get the image base url
@@ -23,6 +24,8 @@ public class Config {
         // parse the backdrop sizes and use the option at index
         JSONArray backdropSizeOptions=images.getJSONArray("backdrop_sizes");
         backdropSize= backdropSizeOptions.optString(1,"w780");
+
+
 
     }
 

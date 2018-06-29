@@ -100,8 +100,6 @@ public class MovieListActivity extends AppCompatActivity {
                 logError("Failed to parse now playing endpoint", throwable, true);
             }
         });
-
-
     }
 
 
@@ -150,6 +148,9 @@ public class MovieListActivity extends AppCompatActivity {
             Toast.makeText(getApplicationContext(), message, Toast.LENGTH_LONG).show();
         }
     }
+
+
+
 
 
 }

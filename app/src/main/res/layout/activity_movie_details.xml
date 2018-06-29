@@ -23,7 +23,9 @@
         android:layout_height="193dp"
         android:layout_above="@+id/tvTitle"
         android:layout_centerHorizontal="true"
-        app:srcCompat="@drawable/flicks_movie_placeholder" />
+        app:srcCompat="@drawable/flicks_movie_placeholder"
+        android:clickable="true"
+        android:onClick="loadVideo"/>
 
     <TextView
         android:id="@+id/tvTitle"
