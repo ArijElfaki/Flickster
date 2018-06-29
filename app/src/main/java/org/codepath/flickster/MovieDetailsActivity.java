@@ -22,6 +22,8 @@ import org.json.JSONException;
 import org.json.JSONObject;
 import org.parceler.Parcels;
 
+import butterknife.BindView;
+import butterknife.ButterKnife;
 import cz.msebera.android.httpclient.Header;
 
 import static org.codepath.flickster.MovieAdapter.imageUrl1;
@@ -42,11 +44,11 @@ public class MovieDetailsActivity extends AppCompatActivity {
     Movie movie;
 
     // the view objects
-    TextView tvTitle;
-    TextView tvOverview;
-    RatingBar rbVoteAverage;
-    ImageView frontIcon;
-    ImageView back;
+    @BindView(R.id.tvTitle) TextView tvTitle;
+    @BindView(R.id.tvOverview) TextView tvOverview;
+    @BindView(R.id.rbVoteAverage)RatingBar rbVoteAverage;
+    @BindView(R.id.frontIcon)ImageView frontIcon;
+    @BindView(R.id.backDrop)ImageView back;
 
     String id;
 
@@ -61,17 +63,18 @@ public class MovieDetailsActivity extends AppCompatActivity {
         setContentView(R.layout.activity_movie_details);
 
         // resolve the view objects
-        tvTitle = (TextView) findViewById(R.id.tvTitle);
-        tvOverview = (TextView) findViewById(R.id.tvOverview);
+        ButterKnife.bind(this);
+       // tvTitle = (TextView) findViewById(R.id.tvTitle);
+       // tvOverview = (TextView) findViewById(R.id.tvOverview);
         tvOverview.setMovementMethod(new ScrollingMovementMethod());
-        rbVoteAverage = (RatingBar) findViewById(R.id.rbVoteAverage);
+        //rbVoteAverage = (RatingBar) findViewById(R.id.rbVoteAverage);
 
         // unwrap the movie passed in via intent, using its simple name as a key
         movie = (Movie) Parcels.unwrap(getIntent().getParcelableExtra(Movie.class.getSimpleName()));
         Log.d("MovieDetailsActivity", String.format("Showing details for '%s'", movie.getTitle()));
 
-        frontIcon= (ImageView) findViewById(R.id.frontIcon);
-        back= (ImageView) findViewById(R.id.backDrop);
+       // frontIcon= (ImageView) findViewById(R.id.frontIcon);
+       // back= (ImageView) findViewById(R.id.backDrop);
 
 
 
