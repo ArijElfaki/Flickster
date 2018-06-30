@@ -40,7 +40,7 @@ GIF created with [RecordIt](http://recordit.co/).
 
 ## Notes
 
-Describe any challenges encountered while building the app.
+One of the problems I faced was trying to work with the different websites API's
 
 ## Open-source libraries used
 
