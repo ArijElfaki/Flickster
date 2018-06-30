@@ -24,7 +24,6 @@ The following **optional** features are implemented:
 
 The following **additional** features are implemented:
 
-* [X] List anything else that you can get done to improve the app functionality!
 * [X] Improved details page
 * [X] Trailer is linked to poster image of details page
 * [X] Scrollbar implemented in details page
