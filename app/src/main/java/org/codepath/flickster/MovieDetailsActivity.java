@@ -142,7 +142,7 @@ public class MovieDetailsActivity extends AppCompatActivity {
                     Log.i(TAG, String.format("Loaded youtube video id "+id));
                 }
                 catch (JSONException e) {
-
+                    e.printStackTrace();
                 }
             }
         });
