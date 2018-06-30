@@ -136,7 +136,6 @@ public class MovieDetailsActivity extends AppCompatActivity {
             public void onSuccess(int statusCode, Header[] headers, JSONObject response) {
                 try {
                     JSONArray results= response.getJSONArray("results");
-                   // id= results.getString(0);
                     JSONObject first= results.getJSONObject(0);
                     id=first.getString("key");
                     Log.i(TAG, String.format("Loaded youtube video id "+id));
